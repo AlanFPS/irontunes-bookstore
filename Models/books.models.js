@@ -6,6 +6,9 @@ const bookSchema = new Schema(
       type: String,
       required: true,
     },
+    coverImg: {
+      type: String,
+    },
     genre: {
       type: String,
       enum: ["Fantasy", "Romance", "Fiction", "Drama"],

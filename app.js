@@ -4,10 +4,9 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const mongoose = require("mongoose");
-const { title } = require("process");
-const { generateKey } = require("crypto");
 
 const Records = require("./models/Records.model");
+const Book = require("./models/Books.models");
 
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
@@ -31,7 +30,13 @@ app.get("/", function (req, res, next) {
   res.render("index", { title: "IronTunes" });
 });
 app.get("/books", function (req, res, next) {
-  res.render("books");
+  Book.find()
+    .then(function (results) {
+      res.render("books", { booksArr: results });
+    })
+    .catch(function (error) {
+      res.render("index");
+    });
 });
 
 app.get("/records", function (req, res, next) {
@@ -43,6 +48,10 @@ app.get("/aboutus", function (req, res, next) {
 
 app.get("/create-record", function (req, res, next) {
   res.render("create-record");
+});
+
+app.get("/create-book", function (req, res, next) {
+  res.render("create-book");
 });
 
 // Create new record
@@ -64,27 +73,49 @@ app.post("/create", function (req, res, next) {
       // res.render("index");
       res.redirect("/all-records");
     });
-  });
+});
 
-//Deletes Users
-User.findByIdAndRemove("625728c52e343d059d92ed8e", { new: true })
-  .then(function (results) {
-    console.log("This is what we found", results);
+// Create new book
+app.post("/create", function (req, res, next) {
+  //This is just a function, with regular JS
+  Book.create({
+    title: req.body.title,
+    coverImg: req.body.coverImg,
+    genre: req.body.genre,
+    rating: req.body.rating,
+    author: req.body.author,
+    price: req.body.price,
   })
-  .catch(function (err) {
-    console.log("Something went wrong", err.message);
-  });
+    .then(function (createdRecord) {
+      //for redirect, this is hitting a url
+      res.redirect("/books");
+      // res.render("index");
+    })
+    .catch(function (error) {
+      // res.render("index");
+      res.redirect("/books");
+    });
+});
+
+// //Deletes Users
+// User.findByIdAndRemove("625728c52e343d059d92ed8e", { new: true })
+//   .then(function (results) {
+//     console.log("This is what we found", results);
+//   })
+//   .catch(function (err) {
+//     console.log("Something went wrong", err.message);
+//   });
 
 // Showing all records
-    app.get("/all-records", (req, res) => {
-      Records.find()
-        .then(function (allRecords) {
-          res.json(allRecords);
-        })
-        .catch(function (error) {
-          res.json(error);
-        });
+app.get("/all-records", (req, res) => {
+  Records.find()
+    .then(function (allRecords) {
+      res.json(allRecords);
+    })
+    .catch(function (error) {
+      res.json(error);
     });
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
