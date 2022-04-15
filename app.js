@@ -23,7 +23,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/users', usersRouter);
 
 app.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'IronTunes' });
+});
+
+app.get('/about', function(req, res, next) {
+  res.render('about');
 });
 
 // catch 404 and forward to error handler
