@@ -71,17 +71,17 @@ app.post("/create", function (req, res, next) {
     artist: req.body.artist,
     genre: req.body.genre,
     releaseYear: req.body.releaseYear,
-    available: req.body.available,
+    // available: req.body.available,
     price: req.body.price,
   })
     .then(function (createdRecord) {
       //for redirect, this is hitting a url
-      res.redirect("/all-records");
+      res.redirect("/records");
       // res.render("index");
     })
     .catch(function (error) {
       // res.render("index");
-      res.redirect("/all-records");
+      res.redirect("/records");
     });
 });
 

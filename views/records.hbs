@@ -1,4 +1,26 @@
 <h2>RECORDS FOR SALE</h2>
+{{#each allRecords}}
+
+
+<ul>
+    <li>{{this.artist}}</li>
+    <img src={{this.coverImg}}/>
+    <li>{{this.genre}}</li>
+    <li>{{this.releaseYear}}</li>
+    {{!-- <li>{{this.available}}</li> --}}
+    <li>{{this.price}}</li>
+</ul>
+
+
+{{/each}}
+
+
+
+  {{!-- <ul>
+      <li></li>
+      {{!-- what's this for????? --}}
+    {{!-- <a href="/records/{{this}}">{{this}}</a> --}}
+  {{!-- </ul> --}}
 
 <div><a href="create-record">Click here to add new records</a></div>
 {{#each recordsArr}}
@@ -8,5 +30,3 @@
     <a href="/records/{{this}}">{{this}}</a>
   </ul>
 {{/each}}
-
-
