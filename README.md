@@ -1,4 +1,4 @@
-![IronTunes-logo](images/irontunes-logo.png)
+![IronTunes-logo](https://imgur.com/Uf6NgL0.png)
 
 # HACKATHON | IronTunes (by Max Hameed & Alan Parasole Sanchez).
 
