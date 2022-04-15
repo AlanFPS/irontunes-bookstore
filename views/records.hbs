@@ -4,31 +4,22 @@
 {{#each allRecords}}
 
 
+<ul>
+    <li>{{this.artist}}</li>
+    <img src={{this.coverImg}}/>
+    <li>{{this.genre}}</li>
+    <li>{{this.releaseYear}}</li>
+    {{!-- <li>{{this.available}}</li> --}}
+    <li>{{this.price}}</li>
+</ul>
 
-  <ul>
+
+{{/each}}
+
+
+
+  {{!-- <ul>
       <li></li>
       {{!-- what's this for????? --}}
     {{!-- <a href="/records/{{this}}">{{this}}</a> --}}
-  </ul>
-
-
-
-
-
-
-{{/each}}
-
-<h2>Here is our collection</h2>
-
-{{#each booksArr}}
-
-
-<ol>
-    <li>{{this.title}}</li>
-    <img src={{this.coverImg}}/>
-    <li>{{this.genre}}</li>
-    <li>{{this.rating}}</li>
-    <li>{{this.author}}</li>
-    <li>{{this.price}}</li>
-</ol>
-{{/each}}
+  {{!-- </ul> --}}

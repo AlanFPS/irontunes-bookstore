@@ -57,7 +57,7 @@ app.post("/create", function (req, res, next) {
     artist: req.body.artist,
     genre: req.body.genre,
     releaseYear: req.body.releaseYear,
-    available: req.body.available,
+    // available: req.body.available,
     price: req.body.price,
   })
     .then(function (createdRecord) {
