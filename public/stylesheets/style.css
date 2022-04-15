@@ -1,7 +1,6 @@
 body {
   padding: 20px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  
 }
 
 a {
@@ -19,7 +18,3 @@ nav {
   width: 80px
 }
 
-
-.section {
-  background-image: url("/images/vinyl.jpg");
-}
