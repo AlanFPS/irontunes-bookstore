@@ -6,6 +6,7 @@ var logger = require("morgan");
 const mongoose = require("mongoose");
 
 const Records = require("./models/Records.model");
+const Book = require("./models/Books.models");
 
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
@@ -29,7 +30,13 @@ app.get("/", function (req, res, next) {
   res.render("index", { title: "IronTunes" });
 });
 app.get("/books", function (req, res, next) {
-  res.render("books");
+  Book.find()
+    .then(function (results) {
+      res.render("books", { booksArr: results });
+    })
+    .catch(function (error) {
+      res.render("index");
+    });
 });
 
 app.get("/records", function (req, res, next) {
@@ -51,6 +58,13 @@ app.get("/create-record", function (req, res, next) {
   res.render("create-record");
 });
 
+
+app.get("/create-book", function (req, res, next) {
+  res.render("create-book");
+});
+
+// Create new record
+
 app.post("/create", function (req, res, next) {
   //This is just a function, with regular JS
   Records.create({
@@ -69,9 +83,34 @@ app.post("/create", function (req, res, next) {
       // res.render("index");
       res.redirect("/records");
     });
-  });
+});
+
+
+// Create new book
+app.post("/create", function (req, res, next) {
+  //This is just a function, with regular JS
+  Book.create({
+    title: req.body.title,
+    coverImg: req.body.coverImg,
+    genre: req.body.genre,
+    rating: req.body.rating,
+    author: req.body.author,
+    price: req.body.price,
+  })
+    .then(function (createdRecord) {
+      //for redirect, this is hitting a url
+      res.redirect("/books");
+      // res.render("index");
+    })
+    .catch(function (error) {
+      // res.render("index");
+      res.redirect("/books");
+    });
+});
+
 
 //Deletes Users
+
 // User.findByIdAndRemove("625728c52e343d059d92ed8e", { new: true })
 //   .then(function (results) {
 //     console.log("This is what we found", results);
@@ -81,15 +120,15 @@ app.post("/create", function (req, res, next) {
 //   });
 
 // Showing all records
-    app.get("/all-records", (req, res) => {
-      Records.find()
-        .then(function (allRecords) {
-          res.json(allRecords);
-        })
-        .catch(function (error) {
-          res.json(error);
-        });
+app.get("/all-records", (req, res) => {
+  Records.find()
+    .then(function (allRecords) {
+      res.json(allRecords);
+    })
+    .catch(function (error) {
+      res.json(error);
     });
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

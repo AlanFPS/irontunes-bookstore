@@ -1,16 +1,16 @@
 <h2>Here is our collection</h2>
 
-{{!-- {{#each }}
+<div><a href="create-book">Click here to add new books</a></div>
+
+{{#each booksArr}}
 
 
-<ol>
+<ul>
     <li>{{this.title}}</li>
+    <img src={{this.coverImg}}/>
     <li>{{this.genre}}</li>
     <li>{{this.rating}}</li>
     <li>{{this.author}}</li>
     <li>{{this.price}}</li>
-</ol>
-
-
-
-{{/each}} --}}
+</ul>
+{{/each}}
