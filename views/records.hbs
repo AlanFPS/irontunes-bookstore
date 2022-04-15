@@ -1,4 +1,14 @@
 <h2>RECORDS FOR SALE</h2>
+<br>
+<div><a href="create-record">Click here to add a new record</a></div>
+{{#each recordsArr}}
+
+  <ul>
+      <li></li>
+    <a href="/records/{{this}}">{{this}}</a>
+  </ul>
+{{/each}}
+<br>
 {{#each allRecords}}
 
 
@@ -21,12 +31,3 @@
       {{!-- what's this for????? --}}
     {{!-- <a href="/records/{{this}}">{{this}}</a> --}}
   {{!-- </ul> --}}
-
-<div><a href="create-record">Click here to add new records</a></div>
-{{#each recordsArr}}
-
-  <ul>
-      <li></li>
-    <a href="/records/{{this}}">{{this}}</a>
-  </ul>
-{{/each}}
