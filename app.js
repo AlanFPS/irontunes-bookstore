@@ -4,8 +4,6 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const mongoose = require("mongoose");
-const { title } = require("process");
-const { generateKey } = require("crypto");
 
 const Records = require("./models/Records.model");
 
@@ -35,17 +33,24 @@ app.get("/books", function (req, res, next) {
 });
 
 app.get("/records", function (req, res, next) {
-  res.render("records");
-});
+  Records.find()
+  .then(function (allRecords) {
+    res.render("records", { allRecords: allRecords });
+  })
+  .catch(function (error) {
+    res.json(error);
+  });;
+});  
+
 app.get("/aboutus", function (req, res, next) {
   res.render("aboutus");
 });
 
+// Create new record
 app.get("/create-record", function (req, res, next) {
   res.render("create-record");
 });
 
-// Create new record
 app.post("/create", function (req, res, next) {
   //This is just a function, with regular JS
   Records.create({
@@ -67,13 +72,13 @@ app.post("/create", function (req, res, next) {
   });
 
 //Deletes Users
-User.findByIdAndRemove("625728c52e343d059d92ed8e", { new: true })
-  .then(function (results) {
-    console.log("This is what we found", results);
-  })
-  .catch(function (err) {
-    console.log("Something went wrong", err.message);
-  });
+// User.findByIdAndRemove("625728c52e343d059d92ed8e", { new: true })
+//   .then(function (results) {
+//     console.log("This is what we found", results);
+//   })
+//   .catch(function (err) {
+//     console.log("Something went wrong", err.message);
+//   });
 
 // Showing all records
     app.get("/all-records", (req, res) => {
