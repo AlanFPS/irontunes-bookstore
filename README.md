@@ -1,8 +1,8 @@
-![IronTunes-logo](/assets/irontunes-logo.png)
+![IronTunes-logo](/images/irontunes-logo.png)
 
 # HACKATHON | IronTunes (by Max Hameed & Alan Parasole Sanchez).
 
-[Click here](https://alaanarg.github.io/Project1-TheGame-SpiderMan/) to go to our website!
+[Click here](https://alaanarg.github.io/irontunes-bookstore/) to go to our website!
 
 ## Introduction
 
