@@ -62,12 +62,12 @@ app.post("/create", function (req, res, next) {
   })
     .then(function (createdRecord) {
       //for redirect, this is hitting a url
-      res.redirect("/all-records");
+      res.redirect("/records");
       // res.render("index");
     })
     .catch(function (error) {
       // res.render("index");
-      res.redirect("/all-records");
+      res.redirect("/records");
     });
   });
 
