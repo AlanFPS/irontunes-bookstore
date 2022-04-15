@@ -40,21 +40,31 @@ app.get("/books", function (req, res, next) {
 });
 
 app.get("/records", function (req, res, next) {
-  res.render("records");
-});
+  Records.find()
+  .then(function (allRecords) {
+    res.render("records", { allRecords: allRecords });
+  })
+  .catch(function (error) {
+    res.json(error);
+  });;
+});  
+
 app.get("/aboutus", function (req, res, next) {
   res.render("aboutus");
 });
 
+// Create new record
 app.get("/create-record", function (req, res, next) {
   res.render("create-record");
 });
+
 
 app.get("/create-book", function (req, res, next) {
   res.render("create-book");
 });
 
 // Create new record
+
 app.post("/create", function (req, res, next) {
   //This is just a function, with regular JS
   Records.create({
@@ -74,6 +84,7 @@ app.post("/create", function (req, res, next) {
       res.redirect("/all-records");
     });
 });
+
 
 // Create new book
 app.post("/create", function (req, res, next) {
@@ -97,7 +108,9 @@ app.post("/create", function (req, res, next) {
     });
 });
 
-// //Deletes Users
+
+//Deletes Users
+
 // User.findByIdAndRemove("625728c52e343d059d92ed8e", { new: true })
 //   .then(function (results) {
 //     console.log("This is what we found", results);
