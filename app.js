@@ -4,6 +4,8 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const mongoose = require("mongoose");
+const { title } = require("process");
+const { generateKey } = require("crypto");
 
 const Records = require("./models/Records.model");
 
@@ -31,6 +33,7 @@ app.get("/", function (req, res, next) {
 app.get("/books", function (req, res, next) {
   res.render("books");
 });
+
 app.get("/records", function (req, res, next) {
   res.render("records");
 });
